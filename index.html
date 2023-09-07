@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Frontend Page HNG</title>
+  </head>
+  <body>
+    <style>
+      *,
+      *::after,
+      *::before {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        font-style: normal;
+        text-align: center;
+      }
+
+      main {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 1rem;
+        width: 100%;
+      }
+
+      p {
+        font-weight: 500;
+        margin: 0.5rem 0;
+      }
+
+      [data-testid="slackUserName"] {
+        font-size: 2.5rem;
+        line-height: 6rem;
+        font-weight: 800;
+      }
+
+      [data-testid="slackDisplayImage"] {
+        width: fit-content;
+        height: 35vh;
+        border-radius: 8px;
+        margin: 1.5rem 0;
+      }
+
+      [data-testid="currentDayOfTheWeek"] {
+        font-weight: 600;
+        font-size: 1.1rem;
+      }
+
+      [data-testid="currentUTCTime"] {
+        font-weight: 600;
+        font-size: 1.1rem;
+      }
+
+      [data-testid="myTrack"] {
+        font-weight: 600;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+      }
+
+      [data-testid="githubURL"] {
+        font-weight: 600;
+        font-size: 1rem;
+      }
+    </style>
+    <main>
+      <h2 data-testid="slackUserName">Dark9T</h2>
+
+      <img
+        src="./images/slack_img.png"
+        alt="Dark9T"
+        data-testid="slackDisplayImage"
+      />
+
+      <p>
+        Current Day:
+        <span data-testid="currentDayOfTheWeek"></span>
+      </p>
+
+      <p>
+        Current UTC Time:
+        <span data-testid="currentUTCTime"></span>
+      </p>
+
+      <p data-testid="myTrack">Frontend</p>
+
+      <p>
+        GitHub Repository:
+        <a
+          href="https://github.com/Mozibix/HNG-Task1.git"
+          data-testid="githubURL"
+          >https://github.com/Mozibix/HNG-Task1.git</a
+        >
+      </p>
+    </main>
+
+    <script>
+      const updateDateTime = () => {
+        const today = new Date();
+        const daysOfWeek = [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ];
+        const currentDayOfWeek = daysOfWeek[today.getDay()];
+        const currentUTCDate = new Date().toUTCString();
+        document.querySelector(
+          '[data-testid="currentDayOfTheWeek"]'
+        ).textContent = currentDayOfWeek;
+        document.querySelector('[data-testid="currentUTCTime"]').textContent =
+          currentUTCDate;
+      };
+
+      setInterval(updateDateTime, 1000);
+    </script>
+  </body>
+</html>
